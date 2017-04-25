@@ -1,0 +1,13 @@
+{
+  "id": "feed.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "RSS feed",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": ["url"]
+}
