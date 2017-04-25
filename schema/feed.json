@@ -4,6 +4,9 @@
   "title": "RSS feed",
   "type": "object",
   "properties": {
+    "id": {
+      "format": "integer"
+    },
     "url": {
       "type": "string",
       "format": "uri"
