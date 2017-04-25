@@ -27,7 +27,7 @@ exports.getComponent = function() {
     
     var req = input.getData('req');
     var db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
-    console.log(req.params);
+
     db('feed')
   	.select('url')
     .where('id', req.params.id)
