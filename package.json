@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/noflo/xpress-demo#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "noflo": "^0.8.3",
     "noflo-nodejs": "^0.8.1",
     "noflo-xpress": "^0.4.1"
