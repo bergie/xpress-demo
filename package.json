@@ -1,0 +1,27 @@
+{
+  "name": "xpress-demo",
+  "version": "1.0.0",
+  "description": "Demo app for noflo-xpress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bergie/xpress-demo.git"
+  },
+  "keywords": [
+    "noflo"
+  ],
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noflo/xpress-demo/issues"
+  },
+  "homepage": "https://github.com/noflo/xpress-demo#readme",
+  "dependencies": {
+    "noflo": "^0.8.3",
+    "noflo-nodejs": "^0.8.1",
+    "noflo-xpress": "^0.4.1"
+  }
+}
