@@ -1,0 +1,351 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "xpress/Server_23cl8": {
+            "component": "xpress/Server",
+            "metadata": {
+                "label": "Server",
+                "x": 360,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress/Resource_805ap": {
+            "component": "xpress/Resource",
+            "metadata": {
+                "label": "Resource",
+                "x": 576,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/BodyParser_rsoaj": {
+            "component": "xpress-demo/BodyParser",
+            "metadata": {
+                "label": "BodyParser",
+                "x": 468,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ReadPort": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "ReadPort",
+                "x": 144,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "DefaultPort": {
+            "component": "core/Kick",
+            "metadata": {
+                "label": "DefaultPort",
+                "x": 252,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/ValidateSchema_pwixz": {
+            "component": "xpress-demo/ValidateSchema",
+            "metadata": {
+                "label": "ValidateSchema",
+                "x": 720,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/FeedIndex_ir88b": {
+            "component": "xpress-demo/FeedIndex",
+            "metadata": {
+                "label": "FeedIndex",
+                "x": 720,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/CreateFeed_tngge": {
+            "component": "xpress-demo/CreateFeed",
+            "metadata": {
+                "label": "CreateFeed",
+                "x": 864,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/GetFeed_clv3r": {
+            "component": "xpress-demo/GetFeed",
+            "metadata": {
+                "label": "GetFeed",
+                "x": 720,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "rss/FetchFeed_sy2uh": {
+            "component": "rss/FetchFeed",
+            "metadata": {
+                "label": "FetchFeed",
+                "x": 828,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "xpress-demo/SendFeedResult_c4pxt": {
+            "component": "xpress-demo/SendFeedResult",
+            "metadata": {
+                "label": "SendFeedResult",
+                "x": 936,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "xpress/Server_23cl8",
+                "port": "app"
+            },
+            "tgt": {
+                "process": "xpress-demo/BodyParser_rsoaj",
+                "port": "app"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "xpress-demo/BodyParser_rsoaj",
+                "port": "app"
+            },
+            "tgt": {
+                "process": "xpress/Resource_805ap",
+                "port": "app"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ReadPort",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "xpress/Server_23cl8",
+                "port": "port"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ReadPort",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "DefaultPort",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "DefaultPort",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "xpress/Server_23cl8",
+                "port": "port"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Resource_805ap",
+                "port": "create"
+            },
+            "tgt": {
+                "process": "xpress-demo/ValidateSchema_pwixz",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Resource_805ap",
+                "port": "index"
+            },
+            "tgt": {
+                "process": "xpress-demo/FeedIndex_ir88b",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "xpress-demo/ValidateSchema_pwixz",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "xpress-demo/CreateFeed_tngge",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Resource_805ap",
+                "port": "show"
+            },
+            "tgt": {
+                "process": "xpress-demo/GetFeed_clv3r",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "xpress-demo/GetFeed_clv3r",
+                "port": "url"
+            },
+            "tgt": {
+                "process": "rss/FetchFeed_sy2uh",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "xpress-demo/GetFeed_clv3r",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "xpress-demo/SendFeedResult_c4pxt",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "rss/FetchFeed_sy2uh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "xpress-demo/SendFeedResult_c4pxt",
+                "port": "item"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "rss/FetchFeed_sy2uh",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "xpress-demo/SendFeedResult_c4pxt",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "data": "1mb",
+            "tgt": {
+                "process": "xpress-demo/BodyParser_rsoaj",
+                "port": "limit"
+            }
+        },
+        {
+            "data": "5000",
+            "tgt": {
+                "process": "DefaultPort",
+                "port": "data"
+            }
+        },
+        {
+            "data": "PORT",
+            "tgt": {
+                "process": "ReadPort",
+                "port": "key"
+            }
+        },
+        {
+            "data": "db.json",
+            "tgt": {
+                "process": "xpress-demo/FeedIndex_ir88b",
+                "port": "db"
+            }
+        },
+        {
+            "data": "db.json",
+            "tgt": {
+                "process": "xpress-demo/CreateFeed_tngge",
+                "port": "db"
+            }
+        },
+        {
+            "data": "schema/feed.json",
+            "tgt": {
+                "process": "xpress-demo/ValidateSchema_pwixz",
+                "port": "schema"
+            }
+        },
+        {
+            "data": "db.json",
+            "tgt": {
+                "process": "xpress-demo/GetFeed_clv3r",
+                "port": "db"
+            }
+        },
+        {
+            "data": "/feed",
+            "tgt": {
+                "process": "xpress/Resource_805ap",
+                "port": "path"
+            }
+        }
+    ]
+}
