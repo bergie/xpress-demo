@@ -8,3 +8,9 @@ Showcases [noflo-xpress](https://github.com/noflo/noflo-xpress) resourceful rout
 * Express-wide middleware (body parser)
 * Route-specific middleware (JSON schema validator)
 * Passing work to regular NoFlo components and handling results of that
+
+## Installation
+
+* Clone this repository
+* `npm install` to grab the dependencies
+* Prepare the SQLite database with `./node_modules/.bin/knex migrate:latest`
