@@ -14,3 +14,13 @@ Showcases [noflo-xpress](https://github.com/noflo/noflo-xpress) resourceful rout
 * Clone this repository
 * `npm install` to grab the dependencies
 * Prepare the SQLite database with `./node_modules/.bin/knex migrate:latest`
+
+## Running
+
+Start the server with:
+
+```bash
+$ ./node_modules/.bin/noflo-nodejs --register=false --graph graphs/main.json --secret=<some secret>
+```
+
+The runtime will provide an address for opening the application in [Flowhub's](https://flowhub.io/) live mode. By opening that address in your browser you can see the running software and make modifications to the graph while it is running.
