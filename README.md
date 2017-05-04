@@ -1,4 +1,4 @@
-NoFlo Express demo app
+NoFlo Express demo app [![Build Status](https://travis-ci.org/bergie/xpress-demo.svg?branch=master)](https://travis-ci.org/bergie/xpress-demo)
 ======================
 
 Simple demo app, originally made for [the Berlin Node.js meetup](https://www.meetup.com/Node-js-Meetup-Berlin/events/238051786/).
