@@ -1,6 +1,8 @@
 NoFlo Express demo app
 ======================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bergie/xpress-demo.svg)](https://greenkeeper.io/)
+
 Simple demo app, originally made for [the Berlin Node.js meetup](https://www.meetup.com/Node-js-Meetup-Berlin/events/238051786/).
 
 Showcases [noflo-xpress](https://github.com/noflo/noflo-xpress) resourceful routing together with concepts like:
