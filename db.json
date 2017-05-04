@@ -2,5 +2,6 @@
   "client": "sqlite3",
   "connection": {
     "filename": "./demo.db"
-  }
+  },
+  "useNullAsDefault": true
 }
