@@ -26,7 +26,7 @@ exports.getComponent = function() {
     var db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
     
     db('feed')
-  	.select('id')
+    .select('id')
     .where('url', req.body.url)
     .then(function (rows) {
       if (rows.length) {
@@ -45,6 +45,7 @@ exports.getComponent = function() {
     .then(function (id) {
       req.res.header('location', '/' + id);
       req.res.status(201).end();
+      output.done();
     });
   });
   
