@@ -57,5 +57,15 @@ describe('Feed API', function () {
         done();
       });
     });
+    it('should provide a fetchable feed', function (done) {
+      this.timeout(4000);
+      request('http://localhost:5000/feed/1', function (err, res, body) {
+        if (err) {
+          return done(err);
+        }
+        chai.expect(JSON.parse(body).length).to.be.above(1);
+        done();
+      });
+    });
   });
 });
