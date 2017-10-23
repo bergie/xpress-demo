@@ -31,7 +31,7 @@ exports.getComponent = function() {
       req.res.json(rows);
       output.done();
     }, function (e) {
-      req.res.send(500, e.message);
+      req.res.status(500).send(e.message);
       output.done(e);
     });
   });
