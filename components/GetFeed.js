@@ -1,48 +1,50 @@
-var noflo = require('noflo');
-var knex = require('knex');
-var path = require('path');
+const noflo = require('noflo');
+const knex = require('knex');
+const path = require('path');
 
-exports.getComponent = function() {
-  var c = new noflo.Component();
+exports.getComponent = function () {
+  const c = new noflo.Component();
   c.description = 'Get feed URL for fetching';
   c.icon = 'file';
   c.inPorts.add('req', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.inPorts.add('db', {
     datatype: 'string',
-    control: true
+    control: true,
   });
   c.outPorts.add('req', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.outPorts.add('url', {
-    datatype: 'string'
+    datatype: 'string',
   });
-  
-  c.process(function (input, output) {
+
+  c.process((input, output) => {
     if (!input.hasData('req', 'db')) {
       return;
     }
-    
-    var req = input.getData('req');
-    var db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
+
+    const req = input.getData('req');
+    // eslint-disable-next-line
+    const db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
 
     db('feed')
-  	.select('url')
-    .where('id', req.params.id)
-    .then(function (rows) {
-      if (!rows.length) {
-        req.res.send(404, "Feed not found");
-        return output.done();
-      }
-      output.send({
-        req: req,
-        url: rows[0].url
+      .select('url')
+      .where('id', req.params.id)
+      .then((rows) => {
+        if (!rows.length) {
+          req.res.send(404, 'Feed not found');
+          output.done();
+          return;
+        }
+        output.send({
+          req,
+          url: rows[0].url,
+        });
+        output.done();
       });
-      output.done();
-    });
   });
-  
+
   return c;
 };

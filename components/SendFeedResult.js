@@ -1,49 +1,46 @@
-var noflo = require('noflo');
+const noflo = require('noflo');
 
-exports.getComponent = function() {
-  var c = new noflo.Component();
+exports.getComponent = function () {
+  const c = new noflo.Component();
   c.description = 'Send RSS fetching result to client';
   c.icon = 'forward';
   c.inPorts.add('req', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.inPorts.add('item', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.inPorts.add('error', {
-    datatype: 'object'
+    datatype: 'object',
   });
-  
-  c.process(function (input, output) {
+
+  return c.process((input, output) => {
     if (!input.hasData('req')) {
       return;
     }
-    
-    var req;
-    
+
+    let req;
+
     if (input.hasData('error')) {
       req = input.getData('req');
-      var error = input.getData('error');
+      const error = input.getData('error');
       req.res.send(500, error.message);
-      return output.done();
+      output.done();
+      return;
     }
-    
+
     if (input.hasStream('item')) {
       req = input.getData('req');
-      var items = input.getStream('item').filter(function (ip) {
+      const items = input.getStream('item').filter((ip) => {
         if (ip.type === 'data') {
           return true;
         }
         return false;
-      }).map(function (ip) {
-        return ip.data;
-      });
-      
+      }).map((ip) => ip.data);
+
       req.res.json(items);
-      
-      return output.done();
+
+      output.done();
     }
   });
-  
-  return c;
 };

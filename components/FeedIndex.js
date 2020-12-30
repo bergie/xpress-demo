@@ -1,40 +1,39 @@
-var noflo = require('noflo');
-var knex = require('knex');
-var path = require('path');
+const noflo = require('noflo');
+const knex = require('knex');
+const path = require('path');
 
-exports.getComponent = function() {
-  var c = new noflo.Component();
+exports.getComponent = function () {
+  const c = new noflo.Component();
   c.description = 'List feeds in the system';
   c.icon = 'bars';
   c.inPorts.add('req', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.inPorts.add('db', {
     datatype: 'string',
-    control: true
+    control: true,
   });
   c.outPorts.add('error', {
-    datatype: 'object'
+    datatype: 'object',
   });
-  
-  c.process(function (input, output) {
+
+  return c.process((input, output) => {
     if (!input.hasData('req', 'db')) {
       return;
     }
-    
-    var req = input.getData('req');
-    var db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
-    
+
+    const req = input.getData('req');
+    // eslint-disable-next-line
+    const db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
+
     db('feed')
-  	.select('id', 'url')
-    .then(function (rows) {
-      req.res.json(rows);
-      output.done();
-    }, function (e) {
-      req.res.status(500).send(e.message);
-      output.done(e);
-    });
+      .select('id', 'url')
+      .then((rows) => {
+        req.res.json(rows);
+        output.done();
+      }, (e) => {
+        req.res.status(500).send(e.message);
+        output.done(e);
+      });
   });
-  
-  return c;
 };
