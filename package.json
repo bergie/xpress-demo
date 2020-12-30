@@ -6,7 +6,7 @@
     "migrate": "knex migrate:latest",
     "lint": "eslint .",
     "pretest": "npm run migrate && npm run lint",
-    "test": "mocha -R spec -t 2000 spec/*.js"
+    "test": "mocha -R spec --exit -t 2000 spec/*.js"
   },
   "repository": {
     "type": "git",
