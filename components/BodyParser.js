@@ -1,6 +1,8 @@
 const noflo = require('noflo');
 const bodyParser = require('body-parser');
 
+// @runtime noflo-nodejs
+
 exports.getComponent = function () {
   const c = new noflo.Component();
   c.description = 'Express body parser middleware';

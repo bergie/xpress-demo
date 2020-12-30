@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Demo app for noflo-xpress",
   "scripts": {
+    "postinstall": "noflo-cache-preheat",
     "migrate": "knex migrate:latest",
     "lint": "eslint .",
     "pretest": "npm run migrate && npm run lint",

@@ -2,6 +2,8 @@ const noflo = require('noflo');
 const knex = require('knex');
 const path = require('path');
 
+// @runtime noflo-nodejs
+
 exports.getComponent = function () {
   const c = new noflo.Component();
   c.description = 'List feeds in the system';

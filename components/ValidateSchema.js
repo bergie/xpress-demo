@@ -2,6 +2,8 @@ const noflo = require('noflo');
 const tv4 = require('tv4');
 const path = require('path');
 
+// @runtime noflo-nodejs
+
 exports.getComponent = function () {
   const c = new noflo.Component();
   c.description = 'Validates request body against JSON schema';

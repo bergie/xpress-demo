@@ -1,5 +1,7 @@
 const noflo = require('noflo');
 
+// @runtime noflo-nodejs
+
 exports.getComponent = function () {
   const c = new noflo.Component();
   c.description = 'Send RSS fetching result to client';
