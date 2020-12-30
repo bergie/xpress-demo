@@ -1,53 +1,50 @@
-var noflo = require('noflo');
-var knex = require('knex');
-var path = require('path');
+const noflo = require('noflo');
+const knex = require('knex');
+const path = require('path');
 
-exports.getComponent = function() {
-  var c = new noflo.Component();
+exports.getComponent = function () {
+  const c = new noflo.Component();
   c.description = 'Register a new feed';
   c.icon = 'plus';
   c.inPorts.add('req', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.inPorts.add('db', {
     datatype: 'string',
-    control: true
+    control: true,
   });
   c.outPorts.add('error', {
-    datatype: 'object'
+    datatype: 'object',
   });
-  
-  c.process(function (input, output) {
+
+  return c.process((input, output) => {
     if (!input.hasData('req', 'db')) {
       return;
     }
-    
-    var req = input.getData('req');
-    var db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
-    
+
+    const req = input.getData('req');
+    // eslint-disable-next-line
+    const db = knex(require(path.resolve(process.cwd(), input.getData('db'))));
+
     db('feed')
-    .select('id')
-    .where('url', req.body.url)
-    .then(function (rows) {
-      if (rows.length) {
+      .select('id')
+      .where('url', req.body.url)
+      .then((rows) => {
+        if (rows.length) {
         // Already exists
-        return rows[0].id;
-      }
-      return db('feed')
-      .insert({
-        url: req.body.url
+          return rows[0].id;
+        }
+        return db('feed')
+          .insert({
+            url: req.body.url,
+          })
+          .returning('id')
+          .then((result) => result[1]);
       })
-      .returning('id')
-      .then(function (result) {
-        return result[1];
+      .then((id) => {
+        req.res.header('location', `/${id}`);
+        req.res.status(201).end();
+        output.done();
       });
-    })
-    .then(function (id) {
-      req.res.header('location', '/' + id);
-      req.res.status(201).end();
-      output.done();
-    });
   });
-  
-  return c;
 };
