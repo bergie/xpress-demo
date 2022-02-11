@@ -27,7 +27,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "coffeescript": "^2.5.1",
-    "knex": "^0.95.0",
+    "knex": "^1.0.3",
     "noflo": "^1.4.0",
     "noflo-core": "^0.6.0",
     "noflo-filesystem": "^2.1.0",
